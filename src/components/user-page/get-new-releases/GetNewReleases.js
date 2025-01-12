@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import "./GetNewReleases.css";
 
-const Release = () => {
+const GetNewReleases = () => {
   const [releases, setReleases] = useState([]);
   const [releaseOfDay, setReleaseOfDay] = useState(null);
   const [error, setError] = useState(null);
 
   const fetchReleases = () => {
     setError(null);
+
+    if (releaseOfDay < 0) {
+      setError("Release day cannot be less than 0");
+      return;
+    }
 
     fetch(`/api/spotify/release?releaseOfDay=${releaseOfDay}`)
       .then((res) => {
@@ -24,24 +30,38 @@ const Release = () => {
       });
   };
 
+  const handleInputChange = (e) => {
+    const value = Number(e.target.value);
+    if (value >= 0) {
+      setReleaseOfDay(value);
+      setError(null);
+    } else {
+      setError("Release day cannot be less than 0");
+    }
+  };
+
   return (
-    <div>
-      <h1>Spotify Releases</h1>
+    <div className="releases-container">
+      <h1 className="releases-title">Spotify Releases</h1>
 
       <input
         type="number"
+        className="releases-input"
         value={releaseOfDay || ""}
-        onChange={(e) => setReleaseOfDay(e.target.value)}
+        onChange={handleInputChange}
         placeholder="Enter release day"
+        min="0" 
       />
-      <button onClick={fetchReleases}>Load Releases</button>
+      <button className="releases-button" onClick={fetchReleases}>
+        Load Releases
+      </button>
 
-      {error && <p>{error}</p>}
+      {error && <p className="releases-error">{error}</p>}
 
       {releases.length > 0 && (
-        <ul>
+        <ul className="releases-list">
           {releases.map((release) => (
-            <li key={release.id}>
+            <li className="releases-item" key={release.id}>
               <strong>{release.name}</strong>
             </li>
           ))}
@@ -51,4 +71,4 @@ const Release = () => {
   );
 };
 
-export default Release;
+export default GetNewReleases;

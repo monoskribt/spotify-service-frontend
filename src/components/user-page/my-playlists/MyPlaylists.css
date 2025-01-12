@@ -1,0 +1,48 @@
+.playlists-container {
+    margin: 20px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .playlists-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .playlists-button {
+    background-color: #1db954;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .playlists-button:hover {
+    background-color: #1ed760;
+  }
+  
+  .playlists-error {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .playlists-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .playlists-item {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .playlists-item strong {
+    color: #000;
+  }
+  
