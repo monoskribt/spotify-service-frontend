@@ -4,6 +4,7 @@ import MyArtists from "../user-page/my-artists/MyArtists"
 import MyPlaylists from "../user-page/my-playlists/MyPlaylists"
 import GetNewReleases from "../user-page/new-releases/GetNewReleases"
 import SaveNewReleases from "../user-page/new-releases/SaveNewReleases";
+import DeleteAllTracksFromChosenPlaylist from "../user-page/tracks/DeleteAllTracks";
 
 const UserPage = () => {
     return (
@@ -20,8 +21,11 @@ const UserPage = () => {
                 <div className="col-md-4 d-flex justify-content-center">
                     <GetNewReleases />
                 </div>
-                <div className="col-md-10 d-flex justify-content-center">
+                <div className="col-md-5 d-flex justify-content-center">
                     <SaveNewReleases />
+                </div>
+                <div className="col-md-5 d-flex justify-content-center">
+                    <DeleteAllTracksFromChosenPlaylist />
                 </div>
             </div>
         </div>

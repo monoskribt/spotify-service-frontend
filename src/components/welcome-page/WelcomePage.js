@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
-import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
 import Header from "../header/Header";
 import logo from "./image/spotify-logo.png";
+import "./WelcomePage.css";
+import { useHandleAuth } from "../authentication/HandleAuthenticaion";
 
 const WelcomePage = () => {
+  const { isAuthenticated } = useHandleAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const refreshToken = Cookies.get("refresh_token");
-    if (refreshToken) {
+    if (isAuthenticated) {
       navigate("/user"); 
     }
-  }, [navigate]);
-
+  }, [isAuthenticated, navigate]);
 
   return (
     <>
-      <Header /> 
+      <Header />
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-10 d-flex flex-column align-items-center custom-container-info">

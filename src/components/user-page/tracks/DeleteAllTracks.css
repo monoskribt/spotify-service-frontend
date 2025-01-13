@@ -1,0 +1,43 @@
+.delete-tracks-container {
+    margin: 20px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.delete-tracks-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.delete-tracks-playlists {
+    margin-bottom: 20px;
+}
+
+.delete-tracks-select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.delete-tracks-button {
+    background-color: #d32f2f;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-tracks-button:hover {
+    background-color: #c62828;
+}
+
+.delete-tracks-message {
+    margin-top: 10px;
+    color: green;
+}
