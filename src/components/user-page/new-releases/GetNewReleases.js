@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getReleases } from "../spotify-action/SpotifyAction";
 import "./GetNewReleases.css";
 
 const GetNewReleases = () => {
@@ -6,28 +7,20 @@ const GetNewReleases = () => {
   const [releaseOfDay, setReleaseOfDay] = useState(null);
   const [error, setError] = useState(null);
 
-  const fetchReleases = () => {
-    setError(null);
-
-    if (releaseOfDay < 0) {
-      setError("Release day cannot be less than 0");
+  const handleGetReleases = async () => {
+    if (!releaseOfDay && releaseOfDay !== 0) {
+      setError("Please enter a valid release day");
       return;
     }
 
-    fetch(`/api/spotify/release?releaseOfDay=${releaseOfDay}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch releases");
-        }
-        return res.json();
-      })
-      .then((result) => {
-        setReleases(result);
-      })
-      .catch((error) => {
-        console.error("Error fetching releases:", error);
-        setError("Failed to fetch releases");
-      });
+    try {
+      const result = await getReleases(releaseOfDay); 
+      setReleases(result);
+      setError(null); 
+    } catch (error) {
+      console.error("Error getting releases:", error);
+      setError("Failed to get releases");
+    }
   };
 
   const handleInputChange = (e) => {
@@ -50,9 +43,9 @@ const GetNewReleases = () => {
         value={releaseOfDay || ""}
         onChange={handleInputChange}
         placeholder="Enter release day"
-        min="0" 
+        min="0"
       />
-      <button className="releases-button" onClick={fetchReleases}>
+      <button className="releases-button" onClick={handleGetReleases}>
         Load Releases
       </button>
 

@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "../header/Header";
-import MyArtists from "./my-artists/MyArtists";
-import MyPlaylists from "./my-playlists/MyPlaylists";
-import GetNewReleases from "./get-new-releases/GetNewReleases";
-import SpotifyActions from "./SpotifyAction";
+import MyArtists from "../user-page/my-artists/MyArtists"
+import MyPlaylists from "../user-page/my-playlists/MyPlaylists"
+import GetNewReleases from "../user-page/new-releases/GetNewReleases"
+import SaveNewReleases from "../user-page/new-releases/SaveNewReleases";
 
 const UserPage = () => {
     return (
@@ -21,7 +21,7 @@ const UserPage = () => {
                     <GetNewReleases />
                 </div>
                 <div className="col-md-10 d-flex justify-content-center">
-                    <SpotifyActions />
+                    <SaveNewReleases />
                 </div>
             </div>
         </div>

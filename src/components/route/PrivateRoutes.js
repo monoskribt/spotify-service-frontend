@@ -1,10 +1,10 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-export const PrivateRoute = ({isAuthenticated, element: Element, ...rest}) => {
-    if(isAuthenticated == null) {
+export const PrivateRoute = ({ checkIsAuthenticated, element: Element, ...rest }) => {
+    if (checkIsAuthenticated == null) {
         return <div>Loading...</div>;
     }
 
-    return isAuthenticated ? <Element {...rest} /> : <Navigate to="/" />;
-}
+    return checkIsAuthenticated ? <Element {...rest} /> : <Navigate to="/" />;
+};
