@@ -5,6 +5,7 @@ import MyPlaylists from "../user-page/my-playlists/MyPlaylists"
 import GetNewReleases from "../user-page/new-releases/GetNewReleases"
 import SaveNewReleases from "../user-page/new-releases/SaveNewReleases";
 import DeleteAllTracksFromChosenPlaylist from "../user-page/tracks/DeleteAllTracks";
+import "./UserPage.css";
 
 const UserPage = () => {
     return (

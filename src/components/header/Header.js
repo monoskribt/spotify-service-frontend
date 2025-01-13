@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container-header">
       <div className="row justify-content-center">
         <div className="col-md-8">
           <header className="custom-header">
