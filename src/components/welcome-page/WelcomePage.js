@@ -17,8 +17,8 @@ const WelcomePage = () => {
 
   return (
     <>
-      <div className="container d-flex justify-content-center">
-        <div className="custom-container-info">
+      <div className="welcome-container">
+        <div className="welcome-container-info">
           <div className="spotify-logo">
             <img src={logo} alt="Spotify Logo" />
             <h1>
