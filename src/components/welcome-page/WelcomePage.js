@@ -1,45 +1,38 @@
 import React, { useEffect } from "react";
-import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
 import Header from "../header/Header";
 import logo from "./image/spotify-logo.png";
+import "./WelcomePage.css";
+import { useHandleAuth } from "../authentication/HandleAuthenticaion";
 
 const WelcomePage = () => {
+  const { isAuthenticated, login } = useHandleAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const refreshToken = Cookies.get("refresh_token");
-    if (refreshToken) {
-      navigate("/user"); 
+    if (isAuthenticated) {
+      navigate("/user");
     }
-  }, [navigate]);
-
+  }, [isAuthenticated, navigate]);
 
   return (
     <>
-      <Header /> 
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-10 d-flex flex-column align-items-center custom-container-info">
-            <div className="py-4"></div>
-            <div className="col-md-2">
-              <img
-                src={logo}
-                alt="Logo"
-                className="img-fluid rounded mb-3"
-              />
-            </div>
-            <div className="col-md-8 text-center">
-              <p>Welcome to the Spotify Clone Application!</p>
-              <p>
-                Here you can manipulate your own main Spotify account, for
-                example: obtain your tracks, playlist, artists, get info as for
-                new releases and add them to your own playlist. To get all these
-                abilities, you need to login.
-              </p>
-            </div>
-            <div className="py-4"></div>
+      <div className="container d-flex justify-content-center">
+        <div className="custom-container-info">
+          <div className="spotify-logo">
+            <img src={logo} alt="Spotify Logo" />
+            <h1>
+              <b className="spotify-text">Spotify</b>
+              <span className="service-text">SERVICE</span>
+            </h1>
           </div>
+          <div className="welcome-text">
+            <p>
+              Welcome to the Spotify Service Application! Log in to manage your
+              playlists, tracks, and artists.
+            </p>
+          </div>
+          <button onClick={login}>Log In</button>
         </div>
       </div>
     </>

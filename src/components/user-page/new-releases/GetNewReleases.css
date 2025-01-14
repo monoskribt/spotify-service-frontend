@@ -1,0 +1,56 @@
+.releases-container {
+    margin: 20px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .releases-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .releases-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 200px;
+  }
+  
+  .releases-button {
+    background-color: #1db954;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .releases-button:hover {
+    background-color: #1ed760;
+  }
+  
+  .releases-error {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .releases-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .releases-item {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .releases-item strong {
+    color: #000;
+  }
+  

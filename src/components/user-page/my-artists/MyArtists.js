@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import "./MyArtists.css";
 
-const Artists = () => {
+const MyArtists = () => {
   const [artists, setArtists] = useState([]);
   const [error, setError] = useState(null);
 
   const fetchArtists = () => {
-    setError(null); 
+    setError(null);
 
     fetch("/api/spotify/artist")
       .then((res) => {
@@ -15,26 +16,28 @@ const Artists = () => {
         return res.json();
       })
       .then((result) => {
-        setArtists(result); 
+        setArtists(result);
       })
       .catch((error) => {
         console.error("Error fetching artists:", error);
-        setError("Failed to fetch artists."); 
+        setError("Failed to fetch artists.");
       });
   };
 
   return (
-    <div>
-      <h1>Spotify Artists</h1>
+    <div className="artists-container">
+      <h1 className="artists-title">My Artists</h1>
 
-      <button onClick={fetchArtists}>Load Artists</button>
+      <button className="artists-button" onClick={fetchArtists}>
+        Load Artists
+      </button>
 
-      {error && <p>{error}</p>}
+      {error && <p className="artists-error">{error}</p>}
 
       {artists.length > 0 && (
-        <ul>
+        <ul className="artists-list">
           {artists.map((artist) => (
-            <li key={artist.id}>
+            <li className="artists-item" key={artist.id}>
               <strong>{artist.name}</strong>
             </li>
           ))}
@@ -44,4 +47,4 @@ const Artists = () => {
   );
 };
 
-export default Artists;
+export default MyArtists;

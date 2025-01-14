@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import "./MyPlaylists.css";
 
 const MyPlaylists = () => {
   const [playlists, setPlaylists] = useState([]);
   const [error, setError] = useState(null);
 
   const fetchPlaylists = () => {
-    setError(null); 
+    setError(null);
 
     fetch("/api/spotify/my-playlists")
       .then((res) => {
@@ -15,7 +16,7 @@ const MyPlaylists = () => {
         return res.json();
       })
       .then((result) => {
-        setPlaylists(result); 
+        setPlaylists(result);
       })
       .catch((error) => {
         console.error("Error fetching playlists:", error);
@@ -24,17 +25,19 @@ const MyPlaylists = () => {
   };
 
   return (
-    <div>
-      <h1>My Playlists</h1>
+    <div className="playlists-container">
+      <h1 className="playlists-title">My Playlists</h1>
 
-      <button onClick={fetchPlaylists}>Load My Playlists</button>
+      <button className="playlists-button" onClick={fetchPlaylists}>
+        Load My Playlists
+      </button>
 
-      {error && <p>{error}</p>}
+      {error && <p className="playlists-error">{error}</p>}
 
       {playlists.length > 0 && (
-        <ul>
+        <ul className="playlists-list">
           {playlists.map((playlist) => (
-            <li key={playlist.id}>
+            <li className="playlists-item" key={playlist.id}>
               <strong>{playlist.name}</strong>
             </li>
           ))}

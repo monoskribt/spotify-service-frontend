@@ -1,33 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WelcomePage from "./welcome-page/WelcomePage";
 import UserPage from "./user-page/UserPage";
-import Cookies from "js-cookie";
-
-
-const PrivateRoute = ({ element: Element, ...rest }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null); 
-
-  useEffect(() => {
-    const refreshToken = Cookies.get("refresh_token");
-    setIsAuthenticated(!!refreshToken);
-  }, []);
-
-  if (isAuthenticated === null) {
-    return <div>Loading</div>; 
-  }
-
-  return isAuthenticated ? <Element {...rest} /> : <Navigate to="/" />;
-};
+import {useHandleAuth} from "./authentication/HandleAuthenticaion";
+import {PrivateRoute} from "./route/PrivateRoutes";
 
 function App() {
+  const { isAuthenticated } = useHandleAuth();
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route
           path="/user"
-          element={<PrivateRoute element={UserPage} />}
+          element = {<PrivateRoute checkIsAuthenticated={isAuthenticated} element={UserPage} />}
         />
       </Routes>
     </Router>

@@ -1,0 +1,56 @@
+.save-releases-container {
+    margin: 20px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .save-releases-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .save-releases-playlists {
+    margin-bottom: 20px;
+  }
+  
+  .save-releases-select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  .save-releases-input {
+    margin: 20px 0;
+  }
+  
+  .save-releases-input-field {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  .save-releases-button {
+    background-color: #fbc02d;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .save-releases-button:hover {
+    background-color: #f9a825;
+  }
+  
+  .save-releases-message {
+    color: green;
+    margin-top: 10px;
+  }
+  
