@@ -6,7 +6,7 @@
   
   .artists-title {
     font-size: 2rem;
-    color: #333;
+    color: white;
     margin-bottom: 10px;
   }
   
@@ -39,10 +39,10 @@
   .artists-item {
     margin: 10px 0;
     font-size: 1.2rem;
-    color: #555;
+    color: white;
   }
   
   .artists-item strong {
-    color: #000;
+    color: white;
   }
   
