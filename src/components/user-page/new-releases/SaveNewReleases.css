@@ -35,7 +35,8 @@
   }
   
   .save-releases-button {
-    background-color: #fbc02d;
+    background: rgb(32,112,48);
+    background: radial-gradient(circle, rgba(32,112,48,1) 10%, rgba(32,112,48,1) 50%, rgba(17,45,23,1) 90%);
     color: white;
     padding: 10px 20px;
     font-size: 1rem;

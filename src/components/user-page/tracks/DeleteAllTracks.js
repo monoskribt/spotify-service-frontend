@@ -27,17 +27,19 @@ const DeleteAllTracksFromChosenPlaylist = () => {
             setMessage("Please select a playlist.");
             return;
         }
-
+    
         setMessage(null);
-
+    
         try {
             const result = await deleteAllFromPlaylist(selectedPlaylist);
-            setMessage(result);
+            setMessage(result);  
         } catch (error) {
             console.error("Error deleting tracks:", error);
             setMessage("Something went wrong: " + error.message);
         }
     };
+    
+    
 
     const handlePlaylistChange = (e) => {
         setSelectedPlaylist(e.target.value);
@@ -52,7 +54,7 @@ const DeleteAllTracksFromChosenPlaylist = () => {
                     value={selectedPlaylist || ""}
                     onChange={handlePlaylistChange}
                 >
-                    <option value="">-- Select Playlist --</option>
+                    <option value=""> **Select Playlist** </option>
                     {playlists.map((playlist) => (
                         <option key={playlist.id} value={playlist.id}>
                             {playlist.name}
@@ -65,7 +67,7 @@ const DeleteAllTracksFromChosenPlaylist = () => {
                 className="delete-tracks-button"
                 onClick={handleDeleteTracksFromChosenPlaylist}
             >
-                Delete All Tracks
+                Delete
             </button>
 
             {message && <p className="delete-tracks-message">{message}</p>}

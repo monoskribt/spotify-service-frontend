@@ -154,6 +154,15 @@ const UserPage = () => {
                             </div>
                         </div>
                     )}
+
+
+                    {selectedAction === 'delete' && (
+                        <div className="row action-card justify-content-center">
+                            <div className="col-12 mb-3">
+                                <DeleteAllTracksFromChosenPlaylist />
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
             <Modal show={showModal} onClose={handleCloseModal}>

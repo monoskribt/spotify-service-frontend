@@ -14,9 +14,9 @@ const GetNewReleases = () => {
     }
 
     try {
-      const result = await getReleases(releaseOfDay); 
+      const result = await getReleases(releaseOfDay);
       setReleases(result);
-      setError(null); 
+      setError(null);
     } catch (error) {
       console.error("Error getting releases:", error);
       setError("Failed to get releases");
@@ -35,32 +35,40 @@ const GetNewReleases = () => {
 
   return (
     <div className="releases-container">
-      <h1 className="releases-title">Spotify Releases</h1>
+      <h1>Spotify Releases</h1>
 
-      <input
-        type="number"
-        className="releases-input"
-        value={releaseOfDay || ""}
-        onChange={handleInputChange}
-        placeholder="Enter release day"
-        min="0"
-      />
-      <button className="releases-button" onClick={handleGetReleases}>
-        Load Releases
-      </button>
+      <div className="py-2"></div>
+
+      <div className="releases-tools">
+        <input
+          type="number"
+          className="releases-input"
+          value={releaseOfDay || ""}
+          onChange={handleInputChange}
+          placeholder="Enter release day"
+          min="0"
+        />
+        <button className="releases-button" onClick={handleGetReleases}>
+          Load
+        </button>
+      </div>
+
+      <div className="py-2"></div>
 
       {error && <p className="releases-error">{error}</p>}
 
-      {releases.length > 0 && (
-        <ul className="releases-list">
-          {releases.map((release) => (
-            <li className="releases-item" key={release.id}>
-              <strong>{release.name}</strong>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      
+        {releases.length > 0 && (
+          <ul className="releases-list">
+            {releases.map((release) => (
+              <li className="releases-item" key={release.id}>
+                <strong>{release.name}</strong>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
   );
 };
 

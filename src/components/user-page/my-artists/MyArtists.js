@@ -1,50 +1,40 @@
-import React, { useState } from "react";
-import "./MyArtists.css";
+import React, { useState, useEffect } from "react";
+import { getArtists } from "../spotify-action/SpotifyAction"; 
+import "./MyArtists.css"
 
-const MyArtists = () => {
-  const [artists, setArtists] = useState([]);
-  const [error, setError] = useState(null);
+const MyArtist = () => {
+    const [artists, setArtists] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  const fetchArtists = () => {
-    setError(null);
+    useEffect(() => {
+        const fetchArtists = async () => {
+            try {
+                const data = await getArtists();
+                setArtists(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    fetch("/api/spotify/artist")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch artists");
-        }
-        return res.json();
-      })
-      .then((result) => {
-        setArtists(result);
-      })
-      .catch((error) => {
-        console.error("Error fetching artists:", error);
-        setError("Failed to fetch artists.");
-      });
-  };
+        fetchArtists();
+    }, []);
 
-  return (
-    <div className="artists-container">
-      <h1 className="artists-title">My Artists</h1>
+    if (loading) return <p className="loading-info">Loading artists...</p>;
+    if (error) return <p>Error: {error}</p>;
 
-      <button className="artists-button" onClick={fetchArtists}>
-        Load Artists
-      </button>
-
-      {error && <p className="artists-error">{error}</p>}
-
-      {artists.length > 0 && (
-        <ul className="artists-list">
-          {artists.map((artist) => (
-            <li className="artists-item" key={artist.id}>
-              <strong>{artist.name}</strong>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+    return (
+        <div className="artist-container">
+            <h1>My Artists</h1>
+            <ul>
+                {artists.map((artist) => (
+                    <li key={artist.id}>{artist.name}</li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
-export default MyArtists;
+export default MyArtist;
