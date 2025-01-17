@@ -13,6 +13,7 @@ import Modal from "./modal/Modal";
 import logoArtist from "./public/logo-artist.png";
 import logoPlaylist from "./public/logo-playlist.png";
 import logoRelease from "./public/logo-release.png";
+import Settings from "./settings/Settings";
 
 
 const UserPage = () => {
@@ -76,6 +77,7 @@ const UserPage = () => {
                                 {user && (
                                     <div className="user-page-dashboard-username">
                                         <p>{user.nickname}</p>
+                                        <p>{user.status}</p>
                                     </div>
                                 )}
                             </div>
@@ -86,7 +88,7 @@ const UserPage = () => {
                             </div>
                             <div className="py-1"></div>
                             <div className="user-page-dashboard-settings">
-                                <button>SETTINGS</button>
+                            <button onClick={() => handleShowModal('settings')}>SETTINGS</button>
                             </div>
                         </div>
                     </div>
@@ -169,6 +171,7 @@ const UserPage = () => {
                 {modalContent === 'artists' && <MyArtists />}
                 {modalContent === 'playlists' && <MyPlaylists />}
                 {modalContent === 'releases' && <GetNewReleases />}
+                {modalContent === 'settings' && <Settings />}
             </Modal>
         </>
     );
