@@ -1,5 +1,5 @@
 export const getArtists = async () => {
-    const response = await fetch("/api/spotify/artist");
+    const response = await fetch("/api/spotify/artists");
 
     if(!response.ok) {
         throw new Error("Failed to get artists");
@@ -8,7 +8,7 @@ export const getArtists = async () => {
 }
 
 export const getPlaylists = async () => {
-    const response = await fetch("/api/spotify/my-playlists");
+    const response = await fetch("/api/spotify/playlists");
     if (!response.ok) {
       throw new Error("Failed to get playlists");
     }
@@ -16,17 +16,19 @@ export const getPlaylists = async () => {
 };
 
 export const getReleases = async (releaseOfDay) => {
-    const response = await fetch(`/api/spotify/release?releaseOfDay=${releaseOfDay}`);
+    const response = await fetch(`/api/spotify/releases?releaseOfDay=${releaseOfDay}`);
+
     if (!response.ok) {
       throw new Error("Failed to get releases");
     }
+
     return await response.json();
   };  
   
 export const saveReleasesToPlaylist = async (playlistId, releaseOfDay) => {
     const response = await fetch(
-      `/api/spotify/save-releases?playlistId=${playlistId}&releaseOfDay=${releaseOfDay}`,
-      { method: "POST" }
+      `/api/spotify/playlists/${playlistId}/releases?releaseOfDay=${releaseOfDay}`, 
+      { method: "POST" } 
     );
     if (!response.ok) {
       throw new Error("Failed to save releases to playlist");
@@ -36,7 +38,7 @@ export const saveReleasesToPlaylist = async (playlistId, releaseOfDay) => {
   
 export const deleteAllFromPlaylist = async (playlistId) => {
     const response = await fetch(
-      `/api/spotify/delete-all-from-playlist?playlistId=${playlistId}`,
+      `/api/spotify/playlists/${playlistId}/items`,
       { method: "DELETE" }
     );
     if (!response.ok) {
