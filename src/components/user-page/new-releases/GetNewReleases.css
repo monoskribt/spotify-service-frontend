@@ -1,56 +1,51 @@
+.releases-container h1 {
+  text-align: center;
+}
+
+.releases-container ul {
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
 .releases-container {
-    margin: 20px auto;
-    text-align: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .releases-title {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .releases-input {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    width: 200px;
-  }
-  
-  .releases-button {
-    background-color: #1db954;
-    color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .releases-button:hover {
-    background-color: #1ed760;
-  }
-  
-  .releases-error {
-    color: red;
-    margin-top: 10px;
-  }
-  
-  .releases-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .releases-item {
-    margin: 10px 0;
-    font-size: 1.2rem;
-    color: #555;
-  }
-  
-  .releases-item strong {
-    color: #000;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.releases-tools {
+  display: flex;
+  justify-content: center;
+}
+
+.releases-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 200px;
+}
+
+.releases-button {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: 3px, solid;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.release-outpust-list {
+  display: flex;
+  justify-content: center;
+}
+
+.releases-error {
+  color: red;
+  margin-top: 10px;
+}

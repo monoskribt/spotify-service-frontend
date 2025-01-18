@@ -58,7 +58,7 @@ const SaveNewReleases = () => {
               value={selectedPlaylist || ""}
               onChange={handlePlaylistChange}
             >
-              <option value="">-- Select Playlist --</option>
+              <option value=""> **Select Playlist** </option>
               {playlists.map((playlist) => (
                 <option key={playlist.id} value={playlist.id}>
                   {playlist.name}
@@ -79,7 +79,7 @@ const SaveNewReleases = () => {
           </div>
     
           <button className="save-releases-button" onClick={handleSaveReleases}>
-            Save Releases to Playlist
+            Save
           </button>
     
           {message && <p className="save-releases-message">{message}</p>}

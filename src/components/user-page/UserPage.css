@@ -1,3 +1,171 @@
-body {
-    background-color: white;
+.user-page-container {
+    height: 100vh; 
+    width: 100%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 0; 
 }
+
+.user-page-dashboard {
+    width: 90%;
+    height: auto;
+    max-width: 45rem; 
+    background: rgb(46,46,46);
+    background: linear-gradient(100deg, rgba(46,46,46,1) 0%, rgba(0,0,0,1) 50%, rgba(46,46,46,1) 100%);
+    border-radius: 20px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.user-page-dashboard h1 {
+    color: gray;
+    letter-spacing: 0.1rem; 
+    font-weight: bold;
+}
+
+.user-page-dashboard-info-user {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.user-page-dashboard-image-username {
+    display: flex;
+    align-items: center;
+}
+
+.user-page-dashboard-user-image {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 8rem;
+    height: 8rem;
+    background-color: white;
+    border-radius: 20%;
+    overflow: hidden;
+}
+
+.user-page-dashboard-user-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.user-page-dashboard-username p {
+    font-size: 1rem;
+    color: white; 
+}
+
+.user-page-dashboard-button-family {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.user-page-dashboard-log-off button {
+    padding: 5px 25px; 
+    font-size: 1rem; 
+    font-weight: 500;
+    background-color: white;
+    color: black;
+    border: none; 
+    border-radius: 25px;
+    letter-spacing: 0.1rem;
+}
+
+.user-page-dashboard-settings button {
+    padding: 5px 25px; 
+    font-size: 1rem; 
+    font-weight: 500;
+    background-color: black;
+    color: white;
+    border: none; 
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 25px;
+    letter-spacing: 0.1rem;
+}
+
+.divider {
+    border: none;
+    border-top: 2px solid #ccc; 
+    margin: 20px 0;
+    width: 100%; 
+}
+
+.spotify-action-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.custom-action-button {
+    padding: 0.2rem 2rem; 
+    border: 2px solid #ccc;
+    border-radius: 25px; 
+    background-color: #ffffff; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+    font-weight: 600;
+    text-align: center;
+}
+
+.btn-container button:nth-child(even) {
+    background-color: black;
+    color: white;
+}
+
+.btn-container button:nth-child(odd) {
+    background-color: white;
+    color: black;
+}
+
+.card {
+    display: flex;
+    gap: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    overflow: hidden;
+    border-radius: 25px !important;
+}
+
+.card-body {
+    height: 13rem;
+}
+
+.btn-custom-even {
+    background-color: black;
+    color: white;
+}
+
+.btn-custom-odd {
+    background-color: white;
+    color: black;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .action-cards {
+        display: flex;
+        flex-direction: column;
+        width: 15rem;
+        gap: 1rem; 
+    }
+}
+
+
+
+
+
+
+
+
