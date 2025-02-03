@@ -31,17 +31,23 @@ const UserPage = () => {
 
 
     useEffect(() => {
-        const callUserInfo = async () => {
-            try {
-                const userInfo = await getUserInfo();
-                setUser(userInfo);
-            } catch (error) {
-                console.log("Happened is somethins error: " + error);
-            }
-        };
+        const refreshToken = localStorage.getItem("access_token");
 
-        callUserInfo();
-    }, []);
+        if (!refreshToken) {
+            navigate("/");
+        } else {
+            const callUserInfo = async () => {
+                try {
+                    const userInfo = await getUserInfo();
+                    setUser(userInfo);
+                } catch (error) {
+                    console.log("Happened is somethins error: " + error);
+                }
+            };
+
+            callUserInfo();
+        }
+    }, [navigate]);
 
     const handleLogout = () => {
         logout();

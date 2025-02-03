@@ -1,25 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getReleases } from "../spotify-action/SpotifyAction";
+import { Client } from "@stomp/stompjs";
+import SockJS from "sockjs-client";
 import "./GetNewReleases.css";
 
 const GetNewReleases = () => {
   const [releases, setReleases] = useState([]);
   const [releaseOfDay, setReleaseOfDay] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
+  const [stompClient, setStompClient] = useState(null);
+
+  useEffect(() => {
+    console.log("Progress updated:", progress, "Total:", total);
+  }, [progress, total]);
+
+  useEffect(() => {
+    const socket = new SockJS("https://spotify.algorithm-challenge.com/ws");
+    const client = new Client({
+      webSocketFactory: () => socket,
+      debug: (str) => console.log(str),
+      onConnect: () => {
+        console.log("Connected to WebSocket");
+        client.subscribe("/topic/progress", (message) => {
+          try {
+            const { processed, total } = JSON.parse(message.body);
+            setProgress(processed);
+            setTotal(total);
+          } catch (error) {
+            console.error("Error parsing progress message:", error);
+          }
+        });
+      },
+      onDisconnect: () => console.log("Disconnected from WebSocket"),
+      onStompError: (frame) => console.error("Broker error:", frame),
+    });
+
+    client.activate();
+    setStompClient(client);
+
+    return () => {
+      if (client) client.deactivate();
+    };
+  }, []);
 
   const handleGetReleases = async () => {
-    if (!releaseOfDay && releaseOfDay !== 0) {
+    if (releaseOfDay === null || releaseOfDay < 0) {
       setError("Please enter a valid release day");
       return;
     }
 
+    setProgress(0);
+    setTotal(0);
+    setReleases([]);
+    setError(null);
+
     try {
-      const result = await getReleases(releaseOfDay);
-      setReleases(result);
-      setError(null);
+      const newReleases = await getReleases(releaseOfDay);
+      setReleases(newReleases);
     } catch (error) {
       console.error("Error getting releases:", error);
-      setError("Failed to get releases");
+      setError(error.message || "Failed to get releases");
     }
   };
 
@@ -57,18 +99,24 @@ const GetNewReleases = () => {
 
       {error && <p className="releases-error">{error}</p>}
 
-      
-        {releases.length > 0 && (
-          <ul className="releases-list">
-            {releases.map((release) => (
-              <li className="releases-item" key={release.id}>
-                <strong>{release.name}</strong>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {total > 0 && (
+        <p style={{ color: "white" }}>
+          Processed: {progress} / {total}
+        </p>
+      )}
 
+      {releases.length > 0 ? (
+        <ul className="releases-list">
+          {releases.map((release) => (
+            <li className="releases-item" key={release.id}>
+              <strong>{release.name}</strong>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="releases-no-results">No releases found</p>
+      )}
+    </div>
   );
 };
 

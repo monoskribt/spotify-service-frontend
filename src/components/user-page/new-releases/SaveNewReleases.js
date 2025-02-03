@@ -41,12 +41,13 @@ const SaveNewReleases = () => {
     }
 
     const handlePlaylistChange = (e) => {
-        setSelectedPlaylist(e.target.value);
+        setSelectedPlaylist(String(e.target.value));
     };
     
     const handleInputChange = (e) => {
-        setReleaseOfDay(e.target.value);
+      setReleaseOfDay(Number(e.target.value)); 
     };
+  
 
 
     return (

@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../header/Header";
 import logo from "./image/spotify-logo.png";
 import "./WelcomePage.css";
 import { useHandleAuth } from "../authentication/HandleAuthenticaion";
 
 const WelcomePage = () => {
-  const { isAuthenticated, login } = useHandleAuth();
+  const { isAuthenticated, externalLogin } = useHandleAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const WelcomePage = () => {
               playlists, tracks, and artists.
             </p>
           </div>
-          <button onClick={login}>Log In</button>
+          <button onClick={externalLogin}>Log In</button>
         </div>
       </div>
     </>
