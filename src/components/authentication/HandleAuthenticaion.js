@@ -1,41 +1,37 @@
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import {login as externalLogin} from "../user-page/user-managment/UserAction"
 
+const getParamsFromUrl = (url) => {
+  const urlParams = new URLSearchParams(new URL(url).search);
+  return {
+    accessToken: urlParams.get('access_token'),
+    refreshToken: urlParams.get('refresh_token')
+  };
+};
 
 export const useHandleAuth = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    useEffect(() => {
-        const refreshToken = Cookies.get("refresh_token");
-        setIsAuthenticated(!!refreshToken);
-    }, []);
+  useEffect(() => {
+    const url = window.location.href;
+    if (url.includes("access_token") && url.includes("refresh_token")) {
+      const { accessToken, refreshToken } = getParamsFromUrl(url);
+  
+      if (accessToken && refreshToken) {
+        localStorage.setItem("access_token", accessToken);
+        localStorage.setItem("refresh_token", refreshToken);
+        console.log("My tokens:", accessToken, refreshToken); 
+        setIsAuthenticated(true);
+      }
+    }
+  }, []);  
 
+  const logout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    setIsAuthenticated(false);
+    window.location.href = "/";
+  };
 
-    const login = () => {
-        fetch("http://localhost:8080/api/login")
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error("Failed to get login URL");
-            }
-            return res.text();
-          })
-          .then((loginUrl) => {
-            window.location.href = loginUrl;
-          })
-          .catch((error) => {
-            console.error("Error during login:", error);
-            alert("Failed to start Spotify login process.");
-          });
-      };
-
-
-      const logout = () => {
-        Cookies.remove("access_token");
-        Cookies.remove("refresh_token");
-        setIsAuthenticated(false);
-      };
-
-
-    return {isAuthenticated, login, logout};
-}
-
+  return { isAuthenticated, externalLogin, logout };
+};
