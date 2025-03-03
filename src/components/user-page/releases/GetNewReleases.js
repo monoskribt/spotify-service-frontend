@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getReleases } from "../spotify-action/SpotifyAction";
+import { getReleases } from "../../../service/SpotifyAction";
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import "./GetNewReleases.css";

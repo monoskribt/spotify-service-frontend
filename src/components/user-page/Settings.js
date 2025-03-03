@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { manageSubscribeStatus } from "../user-managment/UserAction";
+import { manageSubscribeStatus } from "../../service/UserAction";
 import "./Settings.css"
 
 const Settings = () => {

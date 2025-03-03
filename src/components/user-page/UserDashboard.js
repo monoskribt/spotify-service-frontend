@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MyArtists from "../user-page/my-artists/MyArtists";
-import MyPlaylists from "../user-page/my-playlists/MyPlaylists";
-import GetNewReleases from "../user-page/new-releases/GetNewReleases";
-import SaveNewReleases from "../user-page/new-releases/SaveNewReleases";
-import DeleteAllTracksFromChosenPlaylist from "../user-page/tracks/DeleteAllTracks";
-import "./UserPage.css";
+import MyArtists from "./artists/MyArtists";
+import MyPlaylists from "./playlists/MyPlaylists";
+import GetNewReleases from "./releases/GetNewReleases";
+import SaveNewReleases from "./releases/SaveNewReleases";
+import DeleteAllTracksFromChosenPlaylist from "./tracks/DeleteAllTracks";
+import "./UserDashboard.css";
 import userLogo from "./public/user-logo-1.jpg";
-import { useHandleAuth } from "../authentication/HandleAuthenticaion";
-import { getUserInfo } from "./user-managment/UserAction";
+import { useHandleAuth } from "../../service/HandleAuthenticaion";
+import { getUserInfo } from "../../service/UserAction";
 import Modal from "./modal/Modal";
 import logoArtist from "./public/logo-artist.png";
 import logoPlaylist from "./public/logo-playlist.png";
 import logoRelease from "./public/logo-release.png";
-import Settings from "./settings/Settings";
+import Settings from "./Settings";
 
 
-const UserPage = () => {
+const UserDashboard = () => {
     const { logout } = useHandleAuth();
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
@@ -183,4 +183,4 @@ const UserPage = () => {
     );
 }
 
-export default UserPage;
+export default UserDashboard;
