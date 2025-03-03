@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getArtists } from "../spotify-action/SpotifyAction"; 
+import { getArtists } from "../../../service/SpotifyAction"; 
 import "./MyArtists.css"
 
 const MyArtist = () => {

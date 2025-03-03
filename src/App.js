@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import WelcomePage from "./welcome-page/WelcomePage";
-import UserPage from "./user-page/UserPage";
-import {useHandleAuth} from "./authentication/HandleAuthenticaion";
+import WelcomePage from "./pages/WelcomePage";
+import UserPage from "./pages/UserPage";
+import {useHandleAuth} from "./service/HandleAuthenticaion";
 import {PrivateRoute} from "./route/PrivateRoutes";
 
 function App() {

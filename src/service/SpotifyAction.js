@@ -80,11 +80,14 @@ export const saveReleasesToPlaylist = async (playlistId, releaseOfDay) => {
       credentials: "include",
   });
 
-  if (!response.ok) {
-      throw new Error("Failed to save releases to playlist");
-  }
+  const statusCode = await response.json();
 
-  return await response.text();
+  if (statusCode === 204) {
+      return "There are no new releases to save";
+  }
+  if (statusCode === 200) {
+      return "Releases successfully added to playlist";
+  }
 };
 
 
@@ -95,10 +98,16 @@ export const deleteAllFromPlaylist = async (playlistId) => {
     headers: getAuthHeaders(),
   });
 
-  if (!response.ok) {
-    throw new Error("Failed to delete items from playlist");
-  }
+  const statusCode = await response.json();
 
-  return await response.text();
+  if (statusCode === 500) {
+    return "Failed to delete items from playlist. Try again later";
+  }
+  if (statusCode === 204) {
+    return "Playlist is already empty";
+  }
+  if (statusCode === 200) {
+    return "Tracks successfully removed from playlist";
+  }
 };
 

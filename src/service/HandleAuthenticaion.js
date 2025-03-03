@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {login as externalLogin} from "../user-page/user-managment/UserAction"
+import {login as externalLogin} from "./UserAction"
 
 const getParamsFromUrl = (url) => {
   const urlParams = new URLSearchParams(new URL(url).search);

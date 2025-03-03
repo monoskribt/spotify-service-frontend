@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
     getPlaylists,
     deleteAllFromPlaylist
-} from "../spotify-action/SpotifyAction";
+} from "../../../service/SpotifyAction";
 import "./DeleteAllTracks.css";
 
 const DeleteAllTracksFromChosenPlaylist = () => {
