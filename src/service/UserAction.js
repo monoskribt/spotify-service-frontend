@@ -1,6 +1,6 @@
 export const login = async () => {
     try {
-        const response = await fetch("https://spotify.algorithm-challenge.com/api/login", {
+        const response = await fetch("http://localhost:8080/api/login", {
             method: "GET",
         });
         
@@ -20,7 +20,7 @@ export const login = async () => {
 
 
 export const getUserInfo = async () => {
-    const response = await fetch("https://spotify.algorithm-challenge.com/api/user/info", {
+    const response = await fetch("http://localhost:8080/api/user/info", {
         method: "GET",
         credentials: "include",
     });
@@ -34,7 +34,7 @@ export const getUserInfo = async () => {
 
 
 export const manageSubscribeStatus = async(subscribeState) => {
-    const response = await fetch("https://spotify.algorithm-challenge.com/api/user/subscribe?subscribeStatus=" + subscribeState.toUpperCase(), {
+    const response = await fetch("http://localhost:8080/api/user/subscribe?subscribeStatus=" + subscribeState.toUpperCase(), {
         method: "PUT",
         credentials: "include",
     });

@@ -12,7 +12,7 @@ const getAuthHeaders = () => {
 
 
 export const getArtists = async () => {
-  const url = `https://spotify.algorithm-challenge.com/api/spotify/artists`;
+  const url = `http://localhost:8080/api/spotify/artists`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -38,7 +38,7 @@ export const getArtists = async () => {
 
 
 export const getPlaylists = async () => {
-  const url = `https://spotify.algorithm-challenge.com/api/spotify/playlists`;
+  const url = `http://localhost:8080/api/spotify/playlists`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -55,7 +55,7 @@ export const getPlaylists = async () => {
 
 export const getReleases = async (releaseOfDay) => {
 
-  const response = await fetch(`https://spotify.algorithm-challenge.com/api/spotify/releases?releaseOfDay=${releaseOfDay}`, {
+  const response = await fetch(`http://localhost:8080/api/spotify/releases?releaseOfDay=${releaseOfDay}`, {
     method: "GET",
     headers: getAuthHeaders(), 
     credentials: "include", 
@@ -70,7 +70,7 @@ export const getReleases = async (releaseOfDay) => {
 
 
 export const saveReleasesToPlaylist = async (playlistId, releaseOfDay) => {
-  const url = `https://spotify.algorithm-challenge.com/api/spotify/playlists/${playlistId}/releases?releaseOfDay=${releaseOfDay}`;
+  const url = `http://localhost:8080/api/spotify/playlists/${playlistId}/releases?releaseOfDay=${releaseOfDay}`;
   console.log("Request URL:", url); 
   console.log("Headers:", getAuthHeaders()); 
 
@@ -93,7 +93,7 @@ export const saveReleasesToPlaylist = async (playlistId, releaseOfDay) => {
 
 
 export const deleteAllFromPlaylist = async (playlistId) => {
-  const response = await fetch(`https://spotify.algorithm-challenge.com/api/spotify/playlists/${playlistId}/items`, {
+  const response = await fetch(`http://localhost:8080/api/spotify/playlists/${playlistId}/items`, {
     method: "DELETE",
     headers: getAuthHeaders(),
   });
