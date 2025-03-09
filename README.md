@@ -2,10 +2,7 @@
 
 ## Description
 
-This is the frontend for the **Spotify Service API** application, built using **React**, **JavaScript**, and **WebSocket** technologies. On the frontend, there is an option to subscribe to a mailing list of information about new releases of artists to whom the user is subscribed. Information about new releases will be sent to Telegram, to which the user will need to subscribe
-
-
-The app is deployed on **Firebase** and can be accessed at the following URL: [Spotify Service](https://spotify-service-app-49506.web.app/)
+This is the frontend for the **Spotify Service API** application, built using **React**, **JavaScript**, and **WebSocket** technologies. On the frontend, there is an option to subscribe to a mailing list of information about new releases of artists to whom the user is subscribed. Information about new releases will be sent to Telegram, to which the user will need to subscribe.
 
 
 ## Features
