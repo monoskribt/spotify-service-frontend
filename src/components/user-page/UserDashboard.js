@@ -30,22 +30,23 @@ const UserDashboard = () => {
     ];
 
 
+    const updateUserInfo = async () => {
+        try {
+            const userInfo = await getUserInfo();
+            setUser(userInfo);
+        } catch (error) {
+            console.log("Error updating user info: " + error);
+        }
+    };
+
+
     useEffect(() => {
         const refreshToken = localStorage.getItem("access_token");
 
         if (!refreshToken) {
             navigate("/");
         } else {
-            const callUserInfo = async () => {
-                try {
-                    const userInfo = await getUserInfo();
-                    setUser(userInfo);
-                } catch (error) {
-                    console.log("Happened is somethins error: " + error);
-                }
-            };
-
-            callUserInfo();
+            updateUserInfo();
         }
     }, [navigate]);
 
@@ -177,7 +178,7 @@ const UserDashboard = () => {
                 {modalContent === 'artists' && <MyArtists />}
                 {modalContent === 'playlists' && <MyPlaylists />}
                 {modalContent === 'releases' && <GetNewReleases />}
-                {modalContent === 'settings' && <Settings />}
+                {modalContent === 'settings' && <Settings updateUserInfo={updateUserInfo} />}
             </Modal>
         </>
     );
