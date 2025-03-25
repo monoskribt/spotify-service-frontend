@@ -2,8 +2,8 @@ import { useState } from "react";
 import { manageSubscribeStatus } from "../../service/UserAction";
 import "./Settings.css"
 
-const Settings = () => {
-    const [subscribeState, setSubscribeState] = useState("");
+const Settings = ({ updateUserInfo }) => {
+    const [subscribeState, setSubscribeState] = useState(null);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
@@ -16,6 +16,7 @@ const Settings = () => {
 
         try {
             await manageSubscribeStatus(subscribeState);
+            await updateUserInfo();
             setMessage("Subscription status updated successfully");
         } catch (error) {
             console.error("Error:", error);
@@ -37,7 +38,7 @@ const Settings = () => {
                         name="flexRadioDefault"
                         id="flexRadioDefault1"
                         value="SUBSCRIBE"
-                        checked={subscribeState === "Yes"}
+                        checked={subscribeState === "SUBSCRIBE"}
                         onChange={(e) => setSubscribeState(e.target.value)}
                     />
                     <label className="form-check-label" htmlFor="flexRadioDefault1">
@@ -51,7 +52,7 @@ const Settings = () => {
                         name="flexRadioDefault"
                         id="flexRadioDefault2"
                         value="UNSUBSCRIBE"
-                        checked={subscribeState === "No"}
+                        checked={subscribeState === "UNSUBSCRIBE"}
                         onChange={(e) => setSubscribeState(e.target.value)}
                     />
                     <label className="form-check-label" htmlFor="flexRadioDefault2">
